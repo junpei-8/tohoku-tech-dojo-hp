@@ -1,0 +1,20 @@
+FROM node:16
+
+WORKDIR /src/app
+
+ENV PORT 8080
+ENV HOST 0.0.0.0
+
+COPY package.json ./
+
+RUN npm install --omit=dev && npm install @angular/cli
+
+# Copy local angular/nest code to the container
+COPY . .
+
+# Build production app
+ENV NODE_ENV "production"
+
+RUN npm run build:ssr
+
+CMD ["npm", "run", "serve:ssr"]
