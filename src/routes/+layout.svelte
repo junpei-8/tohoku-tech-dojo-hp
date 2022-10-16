@@ -1,18 +1,28 @@
-<script>
+<script lang="ts">
+	import './styles.scss';
+	import Button from '@smui/button';
+	import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
 	import Header from './Header.svelte';
-	import './styles.css';
+
+	// Create a client
+	const queryClient = new QueryClient();
 </script>
 
 <div class="app">
-	<Header />
+	<QueryClientProvider client={queryClient}>
+		<Header />
 
-	<main>
-		<slot />
-	</main>
+		<main>
+			<slot />
+			<Button />
+		</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+		<footer>
+			<p>
+				visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+			</p>
+		</footer>
+	</QueryClientProvider>
 </div>
 
 <style>

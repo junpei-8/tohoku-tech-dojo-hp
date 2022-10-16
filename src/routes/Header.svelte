@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
+	import github from '@/lib/images/github.svg';
+	import logo from '@/lib/images/svelte-logo.svg';
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
 </script>
 
 <header>
@@ -22,8 +22,8 @@
 			<li class:active={$page.url.pathname === '/about'}>
 				<a href="/about">About</a>
 			</li>
-			<li class:active={$page.url.pathname.startsWith('/sverdle')}>
-				<a href="/sverdle">Sverdle</a>
+			<li class:active={$page.url.pathname === '/schedule'}>
+				<a href="/schedule">スケジュール</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
