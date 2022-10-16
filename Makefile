@@ -2,21 +2,16 @@ include .env
 
 OPTION := ${option}
 
-build:
+app-build:
 	docker build -t ${GCP_IMAGE} .
 
-run:
+app-run:
 	docker run -ti --rm -p ${PORT}:${PORT} --name ${GCP_PROJECT_NAME} ${GCP_IMAGE}
 
-up: build run
+up: app-build app-run
 
 down:
 	docker rm -f $(shell docker container ls -q -f "name=${GCP_PROJECT_NAME}")
-
-push:
-	docker build -t ${GCP_IMAGE} .
-	docker tag ${GCP_IMAGE} ${GCP_HOST_NAME}/${GCP_PROJECT_ID}/${GCP_IMAGE}
-	docker push ${GCP_HOST_NAME}/${GCP_PROJECT_ID}/${GCP_IMAGE}
 
 login-firebase:
 	firebase login:ci
@@ -32,9 +27,14 @@ prod-build:
 	gcloud builds submit --tag ${GCP_HOST_NAME}/${GCP_PROJECT_ID}/${GCP_IMAGE} .
 
 prod-deploy:
-	gcloud run deploy ${GCP_PROJECT_ID} --project ${GCP_PROJECT_ID} --region ${GCP_REGION} --image ${GCP_HOST_NAME}/${GCP_PROJECT_ID}/${GCP_IMAGE} --platform managed --allow-unauthenticated
+	gcloud run deploy ${GCP_PROJECT_ID} --project ${GCP_PROJECT_ID} --region ${GCP_REGION} --image ${GCP_IMAGE_} --platform managed --allow-unauthenticated
 
+provide: prod-build
 
+prod-local-push:
+	docker build -t ${GCP_IMAGE} .
+	docker tag ${GCP_IMAGE} ${GCP_HOST_NAME}/${GCP_PROJECT_ID}/${GCP_IMAGE}
+	docker push ${GCP_HOST_NAME}/${GCP_PROJECT_ID}/${GCP_IMAGE}
 
 hosting:
 	firebase deploy
