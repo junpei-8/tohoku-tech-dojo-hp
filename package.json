@@ -2,7 +2,10 @@
 	"name": "tohoku-tech-dojo-hp",
 	"version": "1.0.0",
 	"scripts": {
+		"install:svelte": "pnpm install && svelte-kit sync",
+		"i:svelte": "pnpm install:svelte",
 		"dev": "vite dev",
+		"dev:serve": "pnpm build && pnpm serve",
 		"build": "vite build",
 		"serve": "node build/index.js",
 		"preview": "vite preview",

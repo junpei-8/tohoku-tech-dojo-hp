@@ -23,5 +23,5 @@
 		"typescriptreact",
 		"svelte"
 	],
-	"cSpell.words": ["Connpass"]
+	"cSpell.words": ["Connpass", "esbuild", "sveltekit"]
 }

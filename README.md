@@ -8,6 +8,12 @@
 - Google cloud SDK
 - Firebase tools
 
+## セットアップ
+
+```
+pnpm i:svelte
+```
+
 ## 開発環境立ち上げ
 
 ```
