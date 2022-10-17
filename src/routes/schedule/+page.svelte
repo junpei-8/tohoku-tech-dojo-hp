@@ -4,14 +4,15 @@
 		refetchConnpassEventQuery,
 		useConnpassEventsQuery,
 	} from '@/api/connpass';
+	import ConnpassCard from './ConnpassCard.svelte';
 
-	const connpossEvent = useConnpassEventsQuery({
+	const connpossEvents = useConnpassEventsQuery({
 		keyword: '東北TECH道場',
 		ym: '202110',
 	});
 
 	function changeLoading() {
-		refetchConnpassEventQuery(connpossEvent, {
+		refetchConnpassEventQuery(connpossEvents, {
 			keyword: '東北TECH道場',
 			ym: ['202208', '202210'],
 		});
@@ -26,14 +27,14 @@
 <div class="text-column">
 	<h1>Schedules this app</h1>
 
-	{#if $connpossEvent.isLoading}
+	{#if $connpossEvents.isLoading}
 		<span>Loading...</span>
-	{:else if $connpossEvent.isError}
-		<span>Error: {$connpossEvent.error.message}</span>
-	{:else if $connpossEvent.data}
+	{:else if $connpossEvents.isError}
+		<span>Error: {$connpossEvents.error.message}</span>
+	{:else if $connpossEvents.data}
 		<ul>
-			{#each $connpossEvent.data.events as event}
-				<li>{event.title}</li>
+			{#each $connpossEvents.data.events as { event_url, title } (event_url)}
+				<ConnpassCard {title} eventUrl={event_url} />
 			{/each}
 		</ul>
 	{/if}

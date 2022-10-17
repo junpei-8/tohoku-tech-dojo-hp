@@ -1,10 +1,8 @@
 <script lang="ts">
 	import './styles.scss';
-	import Button from '@smui/button';
 	import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
 	import Header from './Header.svelte';
 
-	// Create a client
 	const queryClient = new QueryClient();
 </script>
 
@@ -14,7 +12,6 @@
 
 		<main>
 			<slot />
-			<Button />
 		</main>
 
 		<footer>
