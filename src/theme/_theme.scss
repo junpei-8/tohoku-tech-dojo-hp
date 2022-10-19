@@ -1,0 +1,15 @@
+@use '@material/theme/color-palette';
+
+// Svelte Colors!
+@use '@material/theme' with (
+	$primary: #ff3e00,
+	$secondary: #676778,
+	$surface: #fafafa,
+	$on-surface: rgba(0, 0, 0, 0.87),
+	$background: #fafafa,
+	$error: color-palette.$red-900
+);
+
+@forward '@material/theme';
+
+$hint: #0009;
