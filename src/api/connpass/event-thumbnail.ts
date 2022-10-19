@@ -1,10 +1,7 @@
 import { useQuery, type UseQueryOptions } from '@sveltestack/svelte-query';
 import { resolveAPIError } from '../error';
 import ScrapeConnpassEventThumbnailWorker from './event-thumbnail.worker.ts?worker';
-import {
-	connpassEventsDefaultQueryOptions,
-	type ConnpassEventsQueryOptions,
-} from './events';
+import { connpassEventsDefaultQueryOptions } from './events';
 import type { ScrapeConnpassEventThumbnailResponse } from './event-thumbnail.worker';
 
 let workingWorker: Worker | null = null;

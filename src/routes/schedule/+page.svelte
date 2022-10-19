@@ -32,12 +32,21 @@
 	{:else if $connpossEvents.isError}
 		<span>Error: {$connpossEvents.error.message}</span>
 	{:else if $connpossEvents.data}
-		<ul>
-			{#each $connpossEvents.data.events as { event_url, title } (event_url)}
-				<ConnpassCard {title} eventUrl={event_url} />
+		<ul class="list">
+			{#each $connpossEvents.data.events as event (event.event_url)}
+				<li>
+					<ConnpassCard {event} />
+				</li>
 			{/each}
 		</ul>
 	{/if}
 
 	<Button on:click={changeLoading}>Button</Button>
 </div>
+
+<style>
+	.list {
+		list-style: none;
+		padding: 0;
+	}
+</style>
