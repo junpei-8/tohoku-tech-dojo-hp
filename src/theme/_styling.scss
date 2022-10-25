@@ -7,9 +7,10 @@ body {
 	color: theme.$on-surface;
 }
 
-a {
+a:visited {
 	color: #40b3ff;
 }
-a:visited {
-	color: color.scale(#40b3ff, $lightness: -35%);
+
+.mdc-hint {
+	color: theme.$hint;
 }

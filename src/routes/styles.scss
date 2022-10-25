@@ -1,6 +1,11 @@
+html,
 body {
-	min-height: 100svh;
-	min-height: 100vh;
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
 	margin: 0;
 }
 
@@ -28,8 +33,4 @@ button {
 
 button:focus:not(:focus-visible) {
 	outline: none;
-}
-
-.mdc-hint {
-	color: #0009;
 }

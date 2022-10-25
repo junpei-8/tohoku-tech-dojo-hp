@@ -1,138 +1,80 @@
 <script lang="ts">
-	import github from '@/lib/images/github.svg';
-	import logo from '@/lib/images/svelte-logo.svg';
 	import { page } from '$app/stores';
+	import LogoSrc from '$lib/images/tohoku-tech-dojo-logo.png';
 </script>
 
-<header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
+<div class="logo-flame">
+	<img class="logo" src={LogoSrc} alt="東北TECH道場" />
+</div>
 
+<header class="header">
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
+		<ul class="list">
 			<li class:active={$page.url.pathname === '/'}>
-				<a href="/">トップ</a>
+				<a class="anchor" href="/">トップ</a>
 			</li>
 			<li class:active={$page.url.pathname === '/about'}>
-				<a href="/about">道場案内</a>
+				<a class="anchor" href="/about">道場案内</a>
 			</li>
 			<li class:active={$page.url.pathname === '/schedule'}>
-				<a href="/schedule">スケジュール</a>
+				<a class="anchor" href="/schedule">スケジュール</a>
 			</li>
 			<li class:active={$page.url.pathname === '/app-intro'}>
-				<a href="/schedule">アプリ紹介</a>
+				<a class="anchor" href="/schedule">アプリ紹介</a>
 			</li>
 			<li class:active={$page.url.pathname === '/schedule'}>
-				<a href="/schedule">お知らせ</a>
+				<a class="anchor" href="/schedule">お知らせ</a>
 			</li>
 			<li class:active={$page.url.pathname === '/faq'}>
-				<a href="/faq">FAQ</a>
+				<a class="anchor" href="/faq">FAQ</a>
 			</li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
 	</nav>
-
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
-	</div>
 </header>
 
-<style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
+<style lang="scss">
+	@use '../theme/theme';
 
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
-
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
-
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
+	.logo-flame {
 		position: relative;
+		z-index: 16;
+		display: flex;
+		justify-content: center;
+		padding: 16px;
+		box-sizing: border-box;
+		background-color: theme.$surface;
+	}
+
+	.logo {
+		height: auto;
+		max-width: 100%;
+	}
+
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 8;
+		box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+	}
+
+	.list {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		list-style: none;
+		width: 100%;
 		padding: 0;
 		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
+
+		:global(.active) {
+			color: theme.$primary;
+		}
 	}
 
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 0.5rem;
-		color: var(--color-text);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--color-theme-1);
+	.anchor {
+		display: block;
+		color: inherit;
+		padding: 8px 16px;
+		box-sizing: border-box;
 	}
 </style>
