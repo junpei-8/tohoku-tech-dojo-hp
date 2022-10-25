@@ -1,26 +1,23 @@
-<script lant="ts">
+<script lang="ts">
 	import Card, { Content, PrimaryAction } from '@smui/card';
 	import CircularProgress from '@smui/circular-progress';
+	import type { ConnpassEventsAPIResponseEvent } from '@/api/connpass';
 	import {
 		refetchScrapingConnpassEventThumbnailURLQuery,
 		useScrapingConnpassEventThumbnailURLQuery,
 	} from '@/api/connpass';
 
-	/** @type import('@/api/connpass').ConnpassEventsAPIResponseEvent */
-	export let event;
+	export let event: ConnpassEventsAPIResponseEvent;
 
-	$: eventUrl = event.event_url;
+	export let eventUrl: string;
 
-	const thumbnailUrlResult = useScrapingConnpassEventThumbnailURLQuery(
-		event.event_url,
-	);
+	const thumbnailUrlResult =
+		useScrapingConnpassEventThumbnailURLQuery(eventUrl);
 
 	$: refetchScrapingConnpassEventThumbnailURLQuery(
 		thumbnailUrlResult,
-		event.event_url,
+		eventUrl,
 	);
-
-	console.log(event);
 
 	let onloadedThumbnail = false;
 </script>

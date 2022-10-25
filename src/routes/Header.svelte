@@ -17,13 +17,22 @@
 		</svg>
 		<ul>
 			<li class:active={$page.url.pathname === '/'}>
-				<a href="/">Home</a>
+				<a href="/">トップ</a>
 			</li>
 			<li class:active={$page.url.pathname === '/about'}>
-				<a href="/about">About</a>
+				<a href="/about">道場案内</a>
 			</li>
 			<li class:active={$page.url.pathname === '/schedule'}>
 				<a href="/schedule">スケジュール</a>
+			</li>
+			<li class:active={$page.url.pathname === '/app-intro'}>
+				<a href="/schedule">アプリ紹介</a>
+			</li>
+			<li class:active={$page.url.pathname === '/schedule'}>
+				<a href="/schedule">お知らせ</a>
+			</li>
+			<li class:active={$page.url.pathname === '/faq'}>
+				<a href="/faq">FAQ</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">

@@ -24,7 +24,7 @@
 	<meta name="description" content="Schedule this app" />
 </svelte:head>
 
-<div class="text-column">
+<section class="text-column">
 	<h1>Schedules this app</h1>
 
 	{#if $connpossEvents.isLoading}
@@ -35,14 +35,14 @@
 		<ul class="list">
 			{#each $connpossEvents.data.events as event (event.event_url)}
 				<li>
-					<ConnpassCard {event} />
+					<ConnpassCard {event} eventUrl={event.event_url} />
 				</li>
 			{/each}
 		</ul>
 	{/if}
 
 	<Button on:click={changeLoading}>Button</Button>
-</div>
+</section>
 
 <style>
 	.list {
