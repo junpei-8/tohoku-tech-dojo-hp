@@ -1,19 +1,27 @@
-FROM node:16
+FROM node:16-alpine3.16 as builder
 
 WORKDIR /app
 
-ENV PORT 3000
+# ENV PORT 3000
 # ENV HOST 0.0.0.0
 
-COPY package.json ./
-
-RUN npm install --omit=dev && npm install --save-dev vite
-
 COPY . .
+RUN npm install
 
 # Build production app
 ENV NODE_ENV "production"
 
 RUN npm run build
+
+
+
+FROM node:16-alpine3.16 as runner
+
+WORKDIR /app
+
+COPY --from=builder build build
+COPY --from=builder .gcloudignore .gcloudignore
+
+ENV NODE_ENV "production"
 
 CMD ["npm", "run", "serve"]

@@ -16,12 +16,6 @@
 		"markdown",
 		"svelte"
 	],
-	"eslint.validate": [
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-		"svelte"
-	],
+	"eslint.validate": ["typescript", "typescriptreact", "svelte"],
 	"cSpell.words": ["Connpass", "esbuild", "sveltekit"]
 }
