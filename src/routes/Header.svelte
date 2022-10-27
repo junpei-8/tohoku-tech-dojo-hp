@@ -20,13 +20,10 @@
 				<a class="anchor" href="/schedule">スケジュール</a>
 			</li>
 			<li class:active={$page.url.pathname === '/app-intro'}>
-				<a class="anchor" href="/schedule">アプリ紹介</a>
+				<a class="anchor" href="/app-intro">アプリ紹介</a>
 			</li>
-			<li class:active={$page.url.pathname === '/schedule'}>
-				<a class="anchor" href="/schedule">お知らせ</a>
-			</li>
-			<li class:active={$page.url.pathname === '/faq'}>
-				<a class="anchor" href="/faq">FAQ</a>
+			<li class:active={$page.url.pathname === '/news'}>
+				<a class="anchor" href="/news">お知らせ</a>
 			</li>
 		</ul>
 	</nav>
@@ -40,7 +37,8 @@
 		z-index: 16;
 		display: flex;
 		justify-content: center;
-		padding: 16px;
+		padding: 24px 16px 12px 16px;
+
 		box-sizing: border-box;
 		background-color: theme.$surface;
 	}
@@ -54,7 +52,9 @@
 		position: sticky;
 		top: 0;
 		z-index: 8;
-		box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+		box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+			0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+		background-color: theme.$surface;
 	}
 
 	.list {
