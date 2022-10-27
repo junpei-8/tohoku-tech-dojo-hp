@@ -2,13 +2,17 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>トップ | 東北TECH道場</title>
+	<meta name="description" content="東北TECH道場" />
 </svelte:head>
 
 <section>
-	<div>Home</div>
+	<h1 class="heading">Top（改装中）</h1>
 </section>
 
 <style>
+	.heading {
+		text-align: center;
+		margin-top: 40px;
+	}
 </style>

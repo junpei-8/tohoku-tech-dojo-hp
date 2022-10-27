@@ -76,6 +76,7 @@ export const ConnpassEventsAPIRequestOrder = {
 export const connpassEventsDefaultQueryOptions = {
 	staleTime: 240000,
 	cacheTime: 240000,
+	retry: 0,
 };
 
 export function createConnpassEventsAPISearchParams(

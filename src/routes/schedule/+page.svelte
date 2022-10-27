@@ -1,9 +1,10 @@
 <script lang="ts">
-	import Button from '@smui/button';
 	import {
 		refetchConnpassEventQuery,
 		useConnpassEventsQuery,
 	} from '@/api/connpass';
+	import ErrorView from '@/views/error-view.svelte';
+	import LoadingView from '@/views/loading-view.svelte';
 	import ConnpassCard from './ConnpassCard.svelte';
 
 	const connpossEvents = useConnpassEventsQuery({
@@ -21,32 +22,50 @@
 
 <svelte:head>
 	<title>スケジュール | 東北TECH道場</title>
-	<meta name="description" content="Schedule this app" />
+	<meta
+		name="description"
+		content="東北TECH道場のスケジュールを確認しましょう。"
+	/>
 </svelte:head>
 
-<section class="text-column">
-	<h1>Schedules this app</h1>
-
-	{#if $connpossEvents.isLoading}
-		<span>Loading...</span>
-	{:else if $connpossEvents.isError}
-		<span>Error: {$connpossEvents.error.message}</span>
-	{:else if $connpossEvents.data}
+{#if $connpossEvents.isLoading}
+	<LoadingView />
+{:else if $connpossEvents.isError}
+	<ErrorView error={$connpossEvents.error} />
+{:else if $connpossEvents.data}
+	<section class="host">
 		<ul class="list">
 			{#each $connpossEvents.data.events as event (event.event_url)}
-				<li>
+				<li class="list-item">
 					<ConnpassCard {event} eventUrl={event.event_url} />
 				</li>
 			{/each}
 		</ul>
-	{/if}
+	</section>
+{/if}
 
-	<Button on:click={changeLoading}>Button</Button>
-</section>
+<style lang="scss">
+	.host {
+		padding: 32px 0;
+		box-sizing: border-box;
+	}
 
-<style>
 	.list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		list-style: none;
 		padding: 0;
+		margin: 0;
+	}
+
+	.list-item {
+		width: 100%;
+		max-width: 800px;
+		border-top: 1px solid #0000001f;
+		&:first-child {
+			border-top: 0;
+		}
 	}
 </style>

@@ -1,6 +1,7 @@
 <footer class="footer">
 	<ul class="list">
 		<li>沿革</li>
+		<li>よくある質問</li>
 		<li>お問い合わせ</li>
 	</ul>
 </footer>

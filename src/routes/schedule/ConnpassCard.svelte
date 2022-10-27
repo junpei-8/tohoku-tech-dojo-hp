@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Card, { Content, PrimaryAction } from '@smui/card';
 	import CircularProgress from '@smui/circular-progress';
+	import Ripple from '@smui/ripple';
 	import type { ConnpassEventsAPIResponseEvent } from '@/api/connpass';
 	import {
 		refetchScrapingConnpassEventThumbnailURLQuery,
@@ -10,6 +10,8 @@
 	export let event: ConnpassEventsAPIResponseEvent;
 
 	export let eventUrl: string;
+
+	console.log(event);
 
 	const thumbnailUrlResult =
 		useScrapingConnpassEventThumbnailURLQuery(eventUrl);
@@ -22,44 +24,43 @@
 	let onloadedThumbnail = false;
 </script>
 
-<a href={eventUrl} target="_brank" rel="noopener noreferrer" class="anchor">
-	<Card variant="outlined" style="border-radius:0">
-		<PrimaryAction style="flex-direction:row">
-			<div class="thumbnail-flame">
-				{#if $thumbnailUrlResult.data}
-					<img
-						src={$thumbnailUrlResult.data}
-						alt="イベントのサムネイル"
-						class="thumbnail"
-						style={onloadedThumbnail ? '' : 'display: none'}
-						on:load={() => (onloadedThumbnail = true)}
-					/>
-				{/if}
+<a
+	class="card"
+	href={eventUrl}
+	target="_brank"
+	rel="noopener noreferrer"
+	use:Ripple={{ surface: true }}
+>
+	<div class="thumbnail-flame">
+		{#if $thumbnailUrlResult.data}
+			<img
+				class="thumbnail"
+				src={$thumbnailUrlResult.data}
+				alt="イベントのサムネイル"
+				style={onloadedThumbnail ? '' : 'display: none'}
+				on:load={() => (onloadedThumbnail = true)}
+			/>
+		{/if}
 
-				{#if $thumbnailUrlResult.isLoading || !onloadedThumbnail}
-					<CircularProgress style="height: 32px; width: 32px;" indeterminate />
-				{/if}
-			</div>
+		{#if $thumbnailUrlResult.isLoading || !onloadedThumbnail}
+			<CircularProgress class="thumbnail-loading-spinner" indeterminate />
+		{/if}
+	</div>
 
-			<div class="content">
-				<h2 class="title">
-					{event.title}
-				</h2>
-				{#if event.catch}
-					<h3 class="subtitle mdc-hint">{event.catch}</h3>
-				{/if}
-				<Content class="mdc-typography--body2">
-					And some info text. And the media and info text are a primary action
-					for the card.
-				</Content>
-			</div>
-		</PrimaryAction>
-	</Card>
+	<div class="content">
+		<h2 class="title">
+			{event.title}
+		</h2>
+		{#if event.catch}
+			<h3 class="subtitle mdc-hint">{event.catch}</h3>
+		{/if}
+	</div>
 </a>
 
 <style lang="scss">
-	.anchor {
-		max-width: 640px;
+	.card {
+		display: flex;
+
 		&:hover .title {
 			text-decoration: underline;
 		}
@@ -71,7 +72,9 @@
 		align-items: center;
 		justify-content: center;
 		width: 30%;
-		min-width: 200px;
+		min-width: 240px;
+		height: 100%;
+		min-height: 144px; // カードの高さの最小値になる
 	}
 
 	.thumbnail {
@@ -84,11 +87,13 @@
 
 	.content {
 		width: 70%;
-		padding: 16px;
+		padding: 12px 16px;
 		box-sizing: border-box;
 	}
 
 	.title {
+		font-size: 20px;
+		font-weight: 500;
 	}
 
 	.subtitle {
