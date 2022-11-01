@@ -3,14 +3,6 @@
 	<meta name="description" content="東北TECH道場" />
 </svelte:head>
 
-<section>
-	<!-- リスト表示させる -->
-	<h1 class="heading">お知らせ（改装中）</h1>
+<section class="app-container">
+	<h2 class="app-heading">お知らせ</h2>
 </section>
-
-<style>
-	.heading {
-		text-align: center;
-		margin-top: 40px;
-	}
-</style>

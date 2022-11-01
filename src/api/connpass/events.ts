@@ -91,6 +91,9 @@ export async function getConnpassEvents(searchParams = '') {
 	try {
 		const response = await fetch(
 			`${CONNPASS_EVENTS_API_ENDPOINT}${searchParams}`,
+			{
+				method: 'GET',
+			},
 		);
 
 		if (!response.ok) throw response;

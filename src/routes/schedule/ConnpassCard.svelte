@@ -11,8 +11,6 @@
 
 	export let eventUrl: string;
 
-	console.log(event);
-
 	const thumbnailUrlResult =
 		useScrapingConnpassEventThumbnailURLQuery(eventUrl);
 
@@ -21,7 +19,7 @@
 		eventUrl,
 	);
 
-	let onloadedThumbnail = false;
+	let onLoadedThumbnail = false;
 </script>
 
 <a
@@ -37,13 +35,12 @@
 				class="thumbnail"
 				src={$thumbnailUrlResult.data}
 				alt="イベントのサムネイル"
-				style={onloadedThumbnail ? '' : 'display: none'}
-				on:load={() => (onloadedThumbnail = true)}
+				on:load={() => (onLoadedThumbnail = true)}
 			/>
 		{/if}
 
-		{#if $thumbnailUrlResult.isLoading || !onloadedThumbnail}
-			<CircularProgress class="thumbnail-loading-spinner" indeterminate />
+		{#if $thumbnailUrlResult.isLoading || !onLoadedThumbnail}
+			<CircularProgress style="width:40px;height:40px" indeterminate />
 		{/if}
 	</div>
 

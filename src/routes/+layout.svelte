@@ -16,9 +16,3 @@
 
 	<Footer />
 </QueryClientProvider>
-
-<style>
-	.main {
-		height: 100%;
-	}
-</style>

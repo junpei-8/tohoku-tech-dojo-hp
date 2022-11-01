@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Ripple from '@smui/ripple';
 	import { page } from '$app/stores';
 	import LogoSrc from '$lib/images/tohoku-tech-dojo-logo.png';
 </script>
@@ -9,21 +10,29 @@
 
 <header class="header">
 	<nav>
-		<ul class="list">
+		<ul class="list mdc-hint">
 			<li class:active={$page.url.pathname === '/'}>
-				<a class="anchor" href="/">トップ</a>
+				<a class="anchor" href="/" use:Ripple={{ surface: true }}>トップ</a>
 			</li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a class="anchor" href="/about">道場案内</a>
+			<li class:active={$page.url.pathname === '/dojo-list'}>
+				<a class="anchor" href="/dojo-list" use:Ripple={{ surface: true }}
+					>道場案内</a
+				>
 			</li>
 			<li class:active={$page.url.pathname === '/schedule'}>
-				<a class="anchor" href="/schedule">スケジュール</a>
+				<a class="anchor" href="/schedule" use:Ripple={{ surface: true }}
+					>スケジュール</a
+				>
 			</li>
 			<li class:active={$page.url.pathname === '/app-intro'}>
-				<a class="anchor" href="/app-intro">アプリ紹介</a>
+				<a class="anchor" href="/app-intro" use:Ripple={{ surface: true }}
+					>アプリ紹介</a
+				>
 			</li>
 			<li class:active={$page.url.pathname === '/news'}>
-				<a class="anchor" href="/news">お知らせ</a>
+				<a class="anchor" href="/news" use:Ripple={{ surface: true }}
+					>お知らせ</a
+				>
 			</li>
 		</ul>
 	</nav>
@@ -67,14 +76,16 @@
 		margin: 0;
 
 		:global(.active) {
+			font-weight: 500;
 			color: theme.$primary;
 		}
 	}
 
 	.anchor {
 		display: block;
-		color: inherit;
-		padding: 8px 16px;
+		padding: 12px 20px;
 		box-sizing: border-box;
+		font-size: 14px;
+		color: inherit;
 	}
 </style>

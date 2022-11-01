@@ -18,7 +18,7 @@ addEventListener(
 	async ({ data: eventUrl }: ScrapeConnpassEventThumbnailRequest) => {
 		workingCount++;
 
-		const eventPageResponse = await fetch(eventUrl);
+		const eventPageResponse = await fetch(eventUrl, { method: 'GET' });
 
 		if (!eventPageResponse.ok) throw eventPageResponse;
 
