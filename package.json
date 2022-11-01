@@ -9,12 +9,11 @@
 		"build": "vite build",
 		"serve": "node build/index.js",
 		"preview": "vite preview",
-		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"svelte:watch": "pnpm check:watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"smui-theme:light": "smui-theme compile static/smui.css -i src/theme ./node_modules",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
