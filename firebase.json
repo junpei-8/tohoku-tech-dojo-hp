@@ -1,14 +1,14 @@
 {
-  "hosting": {
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": [
-      {
-        "source": "**",
-        "run": {
-          "serviceId": "tohoku-tech-dojo-hp",
-          "region": "asia-northeast1"
-        }
-      }
-    ]
-  }
+	"hosting": {
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"rewrites": [
+			{
+				"source": "**",
+				"run": {
+					"serviceId": "tohoku-tech-dojo-hp",
+					"region": "asia-northeast1"
+				}
+			}
+		]
+	}
 }
