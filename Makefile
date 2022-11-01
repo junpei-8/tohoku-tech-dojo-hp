@@ -2,8 +2,13 @@ include .env
 
 OPTION := ${option}
 
+build:
+	docker compose build
+
 up:
 	docker compose up || docker compose rm -fsv
+
+build-up: build up
 
 down:
 	docker compose rm -fsv
@@ -19,7 +24,7 @@ setup-gcp:
 	gcloud config set compute/region ${GCP_REGION}
 	gcloud config set compute/zone ${GCP_ZONE}
 
-gcloud-submit-builds:
+gcloud-build:
 	gcloud builds submit --tag ${GCP_ENTRY_IMAGE} .
 
 gcloud-deploy:
