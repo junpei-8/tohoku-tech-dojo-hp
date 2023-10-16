@@ -7,12 +7,14 @@
 	const queryClient = new QueryClient();
 </script>
 
-<QueryClientProvider client={queryClient}>
-	<Header />
+<div class="app">
+	<QueryClientProvider client={queryClient}>
+		<Header />
 
-	<main class="main">
-		<slot />
-	</main>
+		<main class="main">
+			<slot />
+		</main>
 
-	<Footer />
-</QueryClientProvider>
+		<Footer />
+	</QueryClientProvider>
+</div>

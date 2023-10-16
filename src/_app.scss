@@ -12,3 +12,21 @@
 	border-left: solid 4px currentColor;
 	box-sizing: border-box;
 }
+
+.app-list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+	margin: 0 0 0;
+}
+
+.app-list-item {
+	width: 100%;
+	border-top: 1px solid #0000001f;
+	&:first-child {
+		border-top: 0;
+	}
+}

@@ -23,7 +23,13 @@ yarn dev
 ## デプロイ
 
 ```
-make deploy
+make deploy-client
+```
+
+### Hosting
+
+```
+make deploy-hosting
 ```
 
 ＊ 事前に `setup-gcloud` で Google Cloud SDK の設定を実行している必要があります。

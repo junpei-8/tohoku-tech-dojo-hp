@@ -1,0 +1,15 @@
+query getNewsList {
+	news_list {
+		id
+		title
+		html
+	}
+}
+
+query getSecondaryNewsList {
+	news_list {
+		id
+		title
+		html
+	}
+}

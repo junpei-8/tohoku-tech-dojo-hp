@@ -1,30 +1,26 @@
 <script lang="ts">
 	import CircularProgress from '@smui/circular-progress';
 	import Ripple from '@smui/ripple';
-	import type { ConnpassEventsAPIResponseEvent } from '@/api/connpass';
 	import {
-		refetchScrapingConnpassEventThumbnailURLQuery,
-		useScrapingConnpassEventThumbnailURLQuery,
+		refetchConnpassEventThumbnailQuery,
+		type ConnpassEventsAPIResponseEvent,
 	} from '@/api/connpass';
+	import { useConnpassEventThumbnailQuery } from '@/api/connpass';
+
+	export let id: number;
 
 	export let event: ConnpassEventsAPIResponseEvent;
 
-	export let eventUrl: string;
+	const thumbnailUrlResult = useConnpassEventThumbnailQuery(id);
 
-	const thumbnailUrlResult =
-		useScrapingConnpassEventThumbnailURLQuery(eventUrl);
-
-	$: refetchScrapingConnpassEventThumbnailURLQuery(
-		thumbnailUrlResult,
-		eventUrl,
-	);
+	$: refetchConnpassEventThumbnailQuery(thumbnailUrlResult, id);
 
 	let onLoadedThumbnail = false;
 </script>
 
 <a
 	class="card"
-	href={eventUrl}
+	href={event.event_url}
 	target="_brank"
 	rel="noopener noreferrer"
 	use:Ripple={{ surface: true }}

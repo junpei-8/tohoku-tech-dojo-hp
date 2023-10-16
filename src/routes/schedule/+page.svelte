@@ -35,32 +35,12 @@
 {:else if $connpossEvents.data}
 	<section class="app-container">
 		<h2 class="app-heading">スケジュール</h2>
-		<ul class="list">
-			{#each $connpossEvents.data.events as event (event.event_url)}
-				<li class="list-item">
-					<ConnpassCard {event} eventUrl={event.event_url} />
+		<ul class="app-list">
+			{#each $connpossEvents.data.events as event}
+				<li class="app-list-item">
+					<ConnpassCard {event} id={event.event_id} />
 				</li>
 			{/each}
 		</ul>
 	</section>
 {/if}
-
-<style lang="scss">
-	.list {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		list-style: none;
-		padding: 0;
-		margin: 0 0 0;
-	}
-
-	.list-item {
-		width: 100%;
-		border-top: 1px solid #0000001f;
-		&:first-child {
-			border-top: 0;
-		}
-	}
-</style>

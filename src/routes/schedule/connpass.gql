@@ -1,0 +1,39 @@
+# input ConnpassEventsAPISearchOptions {
+# 	event_id: Int
+# 	keyword: String
+# 	keyword_or: String
+# 	ym: String
+# 	ymd: String
+# 	nickname: String
+# 	owner_nickname: Int
+# 	series_id: Int
+# 	start: Int
+# 	order: Int
+# 	count: Int
+# 	# event_id int
+# 	# keyword?: string;
+# 	# keyword_or?: string;
+# 	# ym?: YM | [YM, YM];
+# 	# ymd?: YMD | [YMD, YMD];
+# 	# nickname?: string;
+# 	# owner_nickname?: string;
+# 	# series_id?: number;
+# 	# start?: number;
+# 	# order?: typeof ConnpassEventsAPIRequestOrder[keyof typeof ConnpassEventsAPIRequestOrder];
+# 	# count?: `${IntRange<1, 101>}`;
+# 	# // format: string; // json で固定
+# }
+
+# query getConnpassEvent {
+# 	getConnpassEvent
+# 		@rest(
+# 			type: "Connpass!"
+# 			endpoint: "connpass"
+# 			path: "/events?keyword=東北TECH道場"
+# 			method: "GET"
+# 		) {
+# 		events {
+# 			event_id
+# 		}
+# 	}
+# }

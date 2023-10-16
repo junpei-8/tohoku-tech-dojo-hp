@@ -1,0 +1,14 @@
+# type Connpass implements Node {
+# 	id: ID!
+# 	events: [ConnpassEvent]!
+# 	url: String!
+# }
+
+# type ConnpassEvent {
+# 	id: ID!
+# 	event_id: Int!
+# }
+
+# extend type Query {
+# 	getConnpassEvent: [Connpass]!
+# }

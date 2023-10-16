@@ -5,7 +5,7 @@
 			{
 				"source": "**",
 				"run": {
-					"serviceId": "tohoku-tech-dojo-hp",
+					"serviceId": "client",
 					"region": "asia-northeast1"
 				}
 			}

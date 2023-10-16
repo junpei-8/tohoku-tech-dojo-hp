@@ -1,51 +1,38 @@
 import { useQuery, type UseQueryOptions } from '@sveltestack/svelte-query';
 import { resolveAPIError } from '../error';
-import ScrapeConnpassEventThumbnailWorker from './event-thumbnail.worker.ts?worker';
-import { connpassEventsDefaultQueryOptions } from './events';
-import type { ScrapeConnpassEventThumbnailResponse } from './event-thumbnail.worker';
+import {
+	connpassEventsDefaultQueryOptions,
+	CONNPASS_EVENTS_API_ENDPOINT,
+} from './events';
 
-let workingWorker: Worker | null = null;
+const createConnpassEventThumbnailUri = (id: number) =>
+	`${CONNPASS_EVENTS_API_ENDPOINT}/thumbnail?id=${id}`;
 
-export function scrapeConnpassEventThumbnailURL(eventUrl: string) {
-	return new Promise<string>((resolve, reject) => {
-		const worker = (workingWorker ||= new ScrapeConnpassEventThumbnailWorker());
+export async function getConnpassEventThumbnailByUri(uri: string) {
+	try {
+		const response = await fetch(uri, {
+			method: 'GET',
+		});
 
-		const removeListener = () => {
-			worker.removeEventListener('message', onSuccess);
-			worker.removeEventListener('messageerror', onError);
-		};
+		if (!response.ok) throw response;
 
-		const onSuccess = ({ data }: ScrapeConnpassEventThumbnailResponse) => {
-			if (data.eventUrl !== eventUrl) return;
+		const url = (await response.json()).url;
 
-			removeListener();
-			resolve(data.thumbnailUrl);
-
-			if (data.done) {
-				worker.terminate();
-				workingWorker = null;
-			}
-		};
-
-		const onError = (error: any) => {
-			removeListener();
-			reject(resolveAPIError(error));
-		};
-
-		worker.addEventListener('message', onSuccess);
-		worker.addEventListener('messageerror', onError);
-
-		worker.postMessage(eventUrl);
-	});
+		return url;
+	} catch (error) {
+		throw resolveAPIError(error);
+	}
 }
 
-export function useScrapingConnpassEventThumbnailURLQuery(
-	eventUrl: string,
+export function useConnpassEventThumbnailQuery(
+	eventId: number,
 	queryOptions?: UseQueryOptions<string, Error>,
 ) {
+	const url = createConnpassEventThumbnailUri(eventId);
+
 	return useQuery<string, Error>(
-		eventUrl,
-		() => scrapeConnpassEventThumbnailURL(eventUrl),
+		url,
+		() => getConnpassEventThumbnailByUri(url),
 		{
 			...connpassEventsDefaultQueryOptions,
 			...queryOptions,
@@ -53,17 +40,15 @@ export function useScrapingConnpassEventThumbnailURLQuery(
 	);
 }
 
-export function refetchScrapingConnpassEventThumbnailURLQuery(
-	queryResult: ReturnType<typeof useScrapingConnpassEventThumbnailURLQuery>,
-	eventUrl: string,
+export function refetchConnpassEventThumbnailQuery(
+	queryResult: ReturnType<typeof useConnpassEventThumbnailQuery>,
+	eventId: number,
 	queryOptions?: UseQueryOptions<string, Error>,
 ) {
-	queryResult.setOptions(
-		eventUrl,
-		() => scrapeConnpassEventThumbnailURL(eventUrl),
-		{
-			...connpassEventsDefaultQueryOptions,
-			...queryOptions,
-		},
-	);
+	const url = createConnpassEventThumbnailUri(eventId);
+
+	queryResult.setOptions(url, () => getConnpassEventThumbnailByUri(url), {
+		...connpassEventsDefaultQueryOptions,
+		...queryOptions,
+	});
 }

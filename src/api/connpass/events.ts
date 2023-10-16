@@ -64,7 +64,9 @@ export type ConnpassEventsQueryOptions = UseQueryOptions<
 	Error
 >;
 
-export const CONNPASS_EVENTS_API_ENDPOINT = 'https://connpass.com/api/v1/event';
+export const CONNPASS_EVENTS_API_ENDPOINT = `${
+	import.meta.env.VITE_API_HOST
+}/connpass/events`;
 
 export const ConnpassEventsAPIRequestOrder = {
 	updatedAt: 1, // 更新日時順

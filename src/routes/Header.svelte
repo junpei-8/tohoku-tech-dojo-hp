@@ -43,7 +43,7 @@
 
 	.logo-flame {
 		position: relative;
-		z-index: 16;
+		z-index: 7;
 		display: flex;
 		justify-content: center;
 		padding: 24px 16px 12px 16px;
@@ -60,7 +60,7 @@
 	.header {
 		position: sticky;
 		top: 0;
-		z-index: 8;
+		z-index: 6;
 		box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
 			0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 		background-color: theme.$surface;
